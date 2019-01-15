@@ -1,3 +1,22 @@
+## 记录
+### how-tomcat-works-ex01
+  启动HttpServer.main之后，服务器启动，等待客户端的连接，如果用浏览器访问：localhost:8080/hello/world,服务器的处理是打印所有的信息：
+```  
+GET /hello/world HTTP/1.1
+Host: localhost:8080
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+```
+这个是一个http的request的请求，然后向请求的客户端返回信息，返回此处返回的信息是request的文件返回给客户端，但是由于不是浏览器所能识别的，\
+因此浏览器和postman都不能显示，自己写一个socket客户端HttpClient，见代码，既可以实现对服务端文件的访问
+
+
+
 # HowTomcatWorks
 《How Tomcat Works》 every chapter demo .
 <br/>
