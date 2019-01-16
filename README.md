@@ -63,8 +63,8 @@ Process finished with exit code 1
 
 配置source和target都为1.8（根据自己的需求设置）。正是因为pom中没有设置jdk版本，所以每次修改pom后重新运行，都会恢复默认版本1.5。
 
-
-
+再次运行，没有报错，但是一旦用浏览器向服务端发送请求，就依然提示：java.lang.NoClassDefFoundError: javax/servlet/ServletRequest \
+上网找原因，可能是maven依赖的servlet-api的scope为provided，把它改成compile或删除scope标签，再次运行就可以接收socket请求
 
 
 ----------------------------------------------------------------------------------------------------------------------------
