@@ -13,7 +13,9 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9
 ```
 这个是一个http的request的请求，然后向请求的客户端返回信息，返回此处返回的信息是request的文件返回给客户端，但是由于不是浏览器所能识别的，\
-因此浏览器和postman都不能显示，自己写一个socket客户端HttpClient，见代码，既可以实现对服务端文件的访问
+因此浏览器和postman都不能显示，自己写一个socket客户端HttpClient，见代码，既可以实现对服务端文件的访问, 如果想在浏览器或postman显示请求 \
+要在服务端的1.txt文件中加上HTTP/1.1  200  OK和回车，否则浏览器不知道这是个http的response
+
 
 
 
