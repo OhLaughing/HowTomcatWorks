@@ -16,7 +16,52 @@ Accept-Language: zh-CN,zh;q=0.9
 因此浏览器和postman都不能显示，自己写一个socket客户端HttpClient，见代码，既可以实现对服务端文件的访问, 如果想在浏览器或postman显示请求 \
 要在服务端的1.txt文件中加上HTTP/1.1  200  OK和回车，否则浏览器不知道这是个http的response
 
+### how-tomcat-works-ex02
+  idea导入的工程执行HttpServer1，提示：
+```
+Exception in thread "main" java.lang.NoClassDefFoundError: javax/servlet/ServletRequest
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:763)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:467)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:73)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:368)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:362)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:361)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:338)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.how.tomcat.works.ex02.HttpServer1.await(HttpServer1.java:51)
+	at org.how.tomcat.works.ex02.HttpServer1.main(HttpServer1.java:26)
+Caused by: java.lang.ClassNotFoundException: javax.servlet.ServletRequest
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:338)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 14 more
 
+Process finished with exit code 1
+
+```
+原因目测应该是jdk的编译版本问题，在project structure中强行把版本改为6，下面提示：Module xxx is imported from Maven.Any changes made in its configuration may be lost after reimport,解决办法，在pom.xml中加入
+```
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+配置source和target都为1.8（根据自己的需求设置）。正是因为pom中没有设置jdk版本，所以每次修改pom后重新运行，都会恢复默认版本1.5。
 
 
 
