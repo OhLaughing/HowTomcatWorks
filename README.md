@@ -66,6 +66,9 @@ Process finished with exit code 1
 再次运行，没有报错，但是一旦用浏览器向服务端发送请求，就依然提示：java.lang.NoClassDefFoundError: javax/servlet/ServletRequest \
 上网找原因，可能是maven依赖的servlet-api的scope为provided，把它改成compile或删除scope标签，再次运行就可以接收socket请求
 
+### how-tomcat-works-util
+-	该模块编译不过，引用lib下的所有jar包即可
+
 
 ----------------------------------------------------------------------------------------------------------------------------
 
